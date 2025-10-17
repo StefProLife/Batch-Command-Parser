@@ -1,6 +1,6 @@
 #include "network_adapter.h"
 
-NetworkAdapter::NetworkAdapter(ReaderPtr reader, size_t countPackageInBolock)
+NetworkAdapter::NetworkAdapter(ReaderPtr reader, const size_t& countPackageInBolock)
     : _reader(std::move(reader)), _countPackageInBolock(countPackageInBolock)
 {}
 
@@ -9,7 +9,7 @@ void NetworkAdapter::ReadPackage()
 
 }
 
-size_t NetworkAdapter::GetCountPackageInBolock()
+const size_t& NetworkAdapter::GetCountPackageInBolock()
 {
     return _countPackageInBolock;
 }

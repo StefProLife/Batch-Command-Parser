@@ -5,10 +5,10 @@
 class NetworkAdapter : public INetworkAdapter
 {
 public:
-    NetworkAdapter(ReaderPtr reader, size_t countPackageInBolock);
+    NetworkAdapter(ReaderPtr reader, const size_t& countPackageInBolock);
 public:
     void ReadPackage() override;
-    size_t GetCountPackageInBolock() override;
+    const size_t& GetCountPackageInBolock() override;
     const ReaderPtr& GetReader() const override;
 private:
     ReaderPtr _reader;
