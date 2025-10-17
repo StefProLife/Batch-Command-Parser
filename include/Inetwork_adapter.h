@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <memory>
 #include "Ireader.h"
 
 class INetworkAdapter
@@ -12,3 +13,5 @@ public:
     virtual const size_t& GetCountPackageInBolock() = 0;
     virtual const ReaderPtr& GetReader() const = 0;
 };
+
+using NetworkAdapterPtr = std::unique_ptr<INetworkAdapter>;

@@ -1,5 +1,7 @@
 #include <string>
+#include <memory>
 #include "Icommand.h"
+
 
 class ILogger
 {
@@ -10,3 +12,5 @@ public:
     const virtual std::string& GetExtension() = 0;
     const virtual std::string& GetPrefix() = 0;
 };
+
+using LoggerPtr = std::unique_ptr<ILogger>;

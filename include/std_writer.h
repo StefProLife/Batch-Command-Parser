@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Istd_writer.h"
+#include "IWriter.h"
 
 class StdWriter : public IWriter
 {
