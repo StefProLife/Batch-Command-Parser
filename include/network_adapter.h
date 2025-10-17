@@ -1,0 +1,4 @@
+class NetworkAdapter : public INetworkAdapter
+{
+
+};

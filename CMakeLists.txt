@@ -2,7 +2,9 @@ cmake_minimum_required(VERSION 3.12)
 
 set(PATCH_VERSION "1" CACHE INTERNAL "Patch version")
 set(PROJECT_VESRION 0.0.${PATCH_VERSION})
-set(SOURCES_FILE src/main.cpp)
+set(SOURCES_FILE src/command.cpp
+                 src/network_adapter.cpp
+                 src/main.cpp)
 
 project(Batch-Command-Parser_Project VERSION ${PROJECT_VESRION})
 
