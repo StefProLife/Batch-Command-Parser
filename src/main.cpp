@@ -7,7 +7,7 @@ int main(int argc, char const* argv[])
     StdReader reader;
     std::string str = reader.Read();
 
-    Command cmd("cmd 1");
+    ICommand& cmd = *(new Command("cmd 1"));
     std::cout << cmd.GetCommnad() << std::endl;
     std::cout << cmd.GetTime() << std::endl;
 
