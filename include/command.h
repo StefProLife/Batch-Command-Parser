@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Icommand.h"
 
 class Command : public ICommand

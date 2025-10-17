@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Ireader.h"
 
 class StdReader : public IReader

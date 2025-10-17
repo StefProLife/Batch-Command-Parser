@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Inetwork_adapter.h"
 
 class NetworkAdapter : public INetworkAdapter
