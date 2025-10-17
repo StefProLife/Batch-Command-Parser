@@ -6,6 +6,14 @@ Parser::Parser(NetworkAdapterPtr networkAdapter, LoggerPtr logger, WriterrPtr wr
       _writer(std::move(writer))
 {}
 
+void Parser::Run()
+{
+    while (true)
+    {
+        _networkAdapter->ReadPackage();
+    }
+}
+
 const NetworkAdapterPtr& Parser::GetNetworkAdapter() const
 {
     return _networkAdapter;

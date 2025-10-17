@@ -5,7 +5,8 @@
 class IBlock
 {
 public:
-	virtual ~IBlock();
+    virtual ~IBlock() = default;
 public:
-	virtual void push(ICommand);
+    virtual void Push(CommandPtr& command) = 0;
+    virtual size_t GetSizeBlock() = 0;
 };
