@@ -1,4 +1,5 @@
-#include<iostream>
+#include <iostream>
+#include <memory>
 
 class IReader
 {
@@ -7,3 +8,5 @@ public:
 public:
     virtual std::string Read() = 0;
 };
+
+using ReaderPtr = std::unique_ptr<IReader>;
