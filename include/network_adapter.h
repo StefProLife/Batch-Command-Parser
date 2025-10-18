@@ -2,11 +2,12 @@
 
 #include "Inetwork_adapter.h"
 #include "Igenerate_command.h"
+#include "Igenerate_block.h"
 
 class NetworkAdapter : public INetworkAdapter
 {
 public:
-    NetworkAdapter(GenerateCommandPtr generateCommand, ReaderPtr reader, const size_t& countPackageInBolock);
+    NetworkAdapter(GenerateCommandPtr generateCommand, GenerateBolckPtr generateBolck, ReaderPtr reader, const size_t& countPackageInBolock);
 public:
     void ReadPackage() override;
     const size_t& GetCountPackageInBolock() override;
@@ -14,5 +15,6 @@ public:
 private:
     ReaderPtr _reader;
     GenerateCommandPtr _generateCommand;
+    GenerateBolckPtr _generateBolck;
     size_t _countPackageInBolock;
 };
