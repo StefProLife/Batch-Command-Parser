@@ -8,9 +8,12 @@ void StdWriter::Write(BlockPtr block)
     // итератор.
     const auto& commands = block->GetCommands();
     std::cout << "bulk: ";
+
     for (size_t i = 0; i < block->GetSizeBlock(); ++i)
     {
         std::cout << std::format("{}", commands[i]->GetCommnad());
         if (i < block->GetSizeBlock() - 1) std::cout << ", ";
     }
+
+    std::cout << std::endl;
 }

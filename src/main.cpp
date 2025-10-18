@@ -30,7 +30,7 @@ int main(int argc, char const* argv[])
     //}
 
     IGenerateCommand* pIGenerateCommand = new GenerateCommand();
-    IGenerateBolck* pIGenerateBolck = new GenerateBolckStatic();
+    IGenerateBlock* pIGenerateBolck = new GenerateBlockStatic();
     IReader* pReader = new StdReader();
     INetworkAdapter* pNetworkAdapter = new NetworkAdapter(pIGenerateCommand, pIGenerateBolck, pReader, countPackageInBolock);
     

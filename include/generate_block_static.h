@@ -2,10 +2,10 @@
 
 #include "Igenerate_block.h"
 
-class GenerateBolckStatic : public IGenerateBolck
+class GenerateBlockStatic : public IGenerateBlock
 {
 public:
-    GenerateBolckStatic() = default;
+    GenerateBlockStatic() = default;
 public:
     IBlock* CreateBlock() override;
 };

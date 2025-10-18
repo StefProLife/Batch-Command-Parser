@@ -4,12 +4,12 @@
 
 class IBlock;
 
-class IGenerateBolck
+class IGenerateBlock
 {
 public:
-    virtual ~IGenerateBolck() = default;
+    virtual ~IGenerateBlock() = default;
 public:
     virtual IBlock* CreateBlock() = 0;
 };
 
-using GenerateBolckPtr = std::unique_ptr<IGenerateBolck>;
+using GenerateBlockPtr = std::unique_ptr<IGenerateBlock>;
