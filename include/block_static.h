@@ -11,5 +11,5 @@ public:
     void Push(CommandPtr& command) override;
     size_t GetSizeBlock() override;
 private:
-    std::queue<CommandPtr> _dequeCommand;
+    std::queue<CommandPtr> _queueCommand;
 };
