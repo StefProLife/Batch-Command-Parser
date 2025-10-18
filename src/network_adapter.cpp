@@ -9,16 +9,20 @@ NetworkAdapter::NetworkAdapter(GenerateCommandPtr generateCommand, GenerateBolck
      _countPackageInBolock(countPackageInBolock)
 {}
 
-void NetworkAdapter::ReadPackage()
+BlockPtr NetworkAdapter::ReadPackage()
 {
     IBlock* pBlock = _generateBolck->CreateBlock();
     for (size_t i = 0; i < _countPackageInBolock; i++)
     {
+        std::string strLine = _reader->Read();
         ICommand* pCommand = _generateCommand->CreateCommnad();
-        pCommand->SetCommnad(_reader->Read());
-        CommandPtr commandPtr = std::unique_ptr<ICommand>(pCommand);
+        pCommand->SetCommnad(strLine);
+        CommandPtr commandPtr = CommandPtr(pCommand);
         pBlock->Push(commandPtr);
     }
+
+    BlockPtr blockPtr = BlockPtr(pBlock);
+    return blockPtr;
 }
 
 const size_t& NetworkAdapter::GetCountPackageInBolock()

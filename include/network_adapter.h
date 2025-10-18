@@ -9,7 +9,7 @@ class NetworkAdapter : public INetworkAdapter
 public:
     NetworkAdapter(GenerateCommandPtr generateCommand, GenerateBolckPtr generateBolck, ReaderPtr reader, const size_t& countPackageInBolock);
 public:
-    void ReadPackage() override;
+    BlockPtr ReadPackage() override;
     const size_t& GetCountPackageInBolock() override;
     const ReaderPtr& GetReader() const override;
 private:

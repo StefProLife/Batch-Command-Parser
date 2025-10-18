@@ -11,12 +11,18 @@ public:
         return instance;
     }
 public:
-    void Log(ICommand& command) override;
+    void Log(BlockPtr command) override;
     const std::string& GetExtension() override;
     const std::string& GetPrefix() override;
+    const std::string& GetPathHome() override;
+    const std::string& GetNameFolder() override;
 private:
     static std::string _extension;
     static std::string _prefix;
+    static std::string _homeDir;
+    static std::string _nameFolder;
+private:
+    static std::string InitPathHomeDir();
 private:
     Logger() = default;
     ~Logger() = default;

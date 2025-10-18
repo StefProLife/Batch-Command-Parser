@@ -1,6 +1,7 @@
 #pragma once
 
-#include<Icommand.h>
+#include <memory>
+#include "Icommand.h"
 
 class IBlock
 {
@@ -10,3 +11,5 @@ public:
     virtual void Push(CommandPtr& command) = 0;
     virtual size_t GetSizeBlock() = 0;
 };
+
+using BlockPtr = std::shared_ptr<IBlock>;

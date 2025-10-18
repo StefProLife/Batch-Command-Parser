@@ -10,7 +10,8 @@ void Parser::Run()
 {
     while (true)
     {
-        _networkAdapter->ReadPackage();
+        BlockPtr block = _networkAdapter->ReadPackage();
+        _logger->Log(block);
     }
 }
 
