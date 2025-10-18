@@ -7,5 +7,5 @@ class StdWriter : public IWriter
 public:
     StdWriter() = default;
 public:
-    void Write(const std::string& str) override;
+    void Write(BlockPtr str) override;
 };

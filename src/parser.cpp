@@ -12,6 +12,7 @@ void Parser::Run()
     {
         BlockPtr block = _networkAdapter->ReadPackage();
         _logger->Log(block);
+        _writer->Write(block);
     }
 }
 

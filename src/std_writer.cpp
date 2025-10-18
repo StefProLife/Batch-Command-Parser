@@ -1,6 +1,6 @@
 #include "std_writer.h"
 
-void StdWriter::Write(const std::string& str)
+void StdWriter::Write(BlockPtr str)
 {
-    std::cout << str;
+    //std::cout << str;
 }

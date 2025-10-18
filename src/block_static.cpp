@@ -2,17 +2,20 @@
 
 void BlockStatic::Push(CommandPtr& command)
 {
-    _queueCommand.push(std::move(command));
-}
-
-CommandPtr BlockStatic::Get()
-{
-    auto command = _queueCommand.front();
-    _queueCommand.pop();
-    return command;
+    _dequeCommand.push_back(std::move(command));
 }
 
 size_t BlockStatic::GetSizeBlock()
 {
-    return _queueCommand.size();
+    return _dequeCommand.size();
+}
+
+const std::deque<CommandPtr>& BlockStatic::GetCommands()
+{
+    return _dequeCommand;
+}
+
+void BlockStatic::Clear()
+{
+    _dequeCommand.clear();
 }

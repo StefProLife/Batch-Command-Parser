@@ -53,35 +53,21 @@ void Logger::Log(BlockPtr block)
         std::cerr << "Error creating directory: " << ex.what() << std::endl;
     }
 
-    CommandPtr command = block->Get();
+    const auto& commands = block->GetCommands();
     std::string strName = std::format("{}{}{}",
         Logger::_prefix,
-        command->GetTime(),
+        (*commands.begin())->GetTime(),
         Logger::_extension);
 
     std::ofstream logFile(strName);
+
     if (logFile.is_open())
     {
-        logFile << std::format("{} | {}", command->GetCommnad(), command->GetTime());
-
-        while (block->GetSizeBlock() != 0);
+        for (const auto& it : commands)
         {
-            command = block->Get();
-            logFile << std::format("{} | {}", command->GetCommnad(), command->GetTime());
+            logFile << std::format("{} | {}", it->GetCommnad(), it->GetTime());
         }
     }
-
-    //// FIX_ME :: Переделать, должен принимать IBlock;
-    //std::string strName = std::format("{}{}{}",
-    //                                  Logger::_prefix,
-    //                                  command.GetTime(),
-    //                                  Logger::_extension);
-    //std::ofstream logFile(strName);
-    //if (logFile.is_open())
-    //{
-    //    logFile << command.GetCommnad();
-    //    logFile.close();
-    //}
 
       logFile.close();
 }

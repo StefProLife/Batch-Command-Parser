@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Iblock.h"
-#include <queue>
 
 class BlockStatic : public IBlock
 {
@@ -9,8 +8,9 @@ public:
     BlockStatic() = default;
 public:
     void Push(CommandPtr& command) override;
-    CommandPtr Get() override;
     size_t GetSizeBlock() override;
+    const std::deque<CommandPtr>& GetCommands() override;
+    void Clear() override;
 private:
-    std::queue<CommandPtr> _queueCommand;
+    std::deque<CommandPtr> _dequeCommand;
 };
