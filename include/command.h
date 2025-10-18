@@ -5,8 +5,9 @@
 class Command : public ICommand
 {
 public:
-    Command(const std::string& name);
+    Command() = default;
 public:
+    void SetCommnad(const std::string& name) override;
     const std::string& GetCommnad() override;
     const std::string& GetTime() override;
 private:

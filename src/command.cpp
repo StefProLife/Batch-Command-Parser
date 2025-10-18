@@ -1,6 +1,6 @@
 #include "command.h"
 
-Command::Command(const std::string& name)
+void Command::SetCommnad(const std::string& name)
 {
     auto nowClock = std::chrono::system_clock::now();
     std::time_t time = std::chrono::system_clock::to_time_t(nowClock);
