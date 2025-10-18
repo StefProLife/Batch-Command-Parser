@@ -13,4 +13,4 @@ public:
     virtual const std::string& GetTime() = 0;
 };
 
-using CommandPtr = std::unique_ptr<ICommand>;
+using CommandPtr = std::shared_ptr<ICommand>;

@@ -9,6 +9,7 @@ public:
     BlockStatic() = default;
 public:
     void Push(CommandPtr& command) override;
+    CommandPtr Get() override;
     size_t GetSizeBlock() override;
 private:
     std::queue<CommandPtr> _queueCommand;

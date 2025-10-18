@@ -1,7 +1,8 @@
 #include "file_logger.h"
 #include <iostream>
-#include <fstream>
 #include <filesystem>
+#include <fstream>
+#include <format>
 
 namespace fs = std::filesystem;
 
@@ -29,8 +30,10 @@ std::string Logger::InitPathHomeDir()
     return homeDir.string();
 }
 
-void Logger::Log(BlockPtr command)
+void Logger::Log(BlockPtr block)
 {
+    if(block->GetSizeBlock() == 0) return;
+
     fs::path dirPath = _nameFolder;
 
     try
@@ -50,6 +53,24 @@ void Logger::Log(BlockPtr command)
         std::cerr << "Error creating directory: " << ex.what() << std::endl;
     }
 
+    CommandPtr command = block->Get();
+    std::string strName = std::format("{}{}{}",
+        Logger::_prefix,
+        command->GetTime(),
+        Logger::_extension);
+
+    std::ofstream logFile(strName);
+    if (logFile.is_open())
+    {
+        logFile << std::format("{} | {}", command->GetCommnad(), command->GetTime());
+
+        while (block->GetSizeBlock() != 0);
+        {
+            command = block->Get();
+            logFile << std::format("{} | {}", command->GetCommnad(), command->GetTime());
+        }
+    }
+
     //// FIX_ME :: Переделать, должен принимать IBlock;
     //std::string strName = std::format("{}{}{}",
     //                                  Logger::_prefix,
@@ -61,6 +82,8 @@ void Logger::Log(BlockPtr command)
     //    logFile << command.GetCommnad();
     //    logFile.close();
     //}
+
+      logFile.close();
 }
 
 const std::string& Logger::GetExtension()
