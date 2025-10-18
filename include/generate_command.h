@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Igenerate_command.h"
 
 class GenerateCommand : public IGenerateCommand

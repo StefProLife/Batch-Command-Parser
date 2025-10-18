@@ -10,7 +10,8 @@ public:
 public:
     virtual void SetCommnad(const std::string& name) = 0;
     virtual const std::string& GetCommnad() = 0;
-    virtual const std::string& GetTime() = 0;
+    virtual const std::string& GetDataTime() = 0;
+    virtual long long GetTick() = 0;
 };
 
 using CommandPtr = std::shared_ptr<ICommand>;

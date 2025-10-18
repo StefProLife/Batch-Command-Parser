@@ -1,9 +1,9 @@
 #include "parser.h"
 
-Parser::Parser(NetworkAdapterPtr networkAdapter, LoggerPtr logger, WriterrPtr writer)
-    : _networkAdapter(std::move(networkAdapter)),
-      _logger(std::move(logger)),
-      _writer(std::move(writer))
+Parser::Parser(INetworkAdapter* pNetworkAdapter, ILogger* pLogger, IWriter* pWriter)
+    : _networkAdapter(NetworkAdapterPtr(pNetworkAdapter)),
+      _logger(LoggerPtr(pLogger)),
+      _writer(WriterrPtr(pWriter))
 {}
 
 void Parser::Run()

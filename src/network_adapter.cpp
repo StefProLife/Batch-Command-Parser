@@ -1,12 +1,14 @@
+#pragma once
+
 #include "network_adapter.h"
 #include "Icommand.h"
 #include "Iblock.h"
 
-NetworkAdapter::NetworkAdapter(GenerateCommandPtr generateCommand, GenerateBolckPtr generateBolck, ReaderPtr reader, const size_t& countPackageInBolock)
-    : _reader(std::move(reader)),
-     _generateCommand(std::move(generateCommand)),
-     _generateBolck(std::move(generateBolck)),
-     _countPackageInBolock(countPackageInBolock)
+NetworkAdapter::NetworkAdapter(IGenerateCommand* pGenerateCommand, IGenerateBolck* pGenerateBolck, IReader* pReader, const size_t& countPackageInBolock)
+    : _generateCommand(GenerateCommandPtr(pGenerateCommand)),
+      _generateBolck(GenerateBolckPtr(pGenerateBolck)),
+      _reader(ReaderPtr(pReader)),
+      _countPackageInBolock(countPackageInBolock)
 {}
 
 BlockPtr NetworkAdapter::ReadPackage()

@@ -19,3 +19,8 @@ void BlockStatic::Clear()
 {
     _dequeCommand.clear();
 }
+
+bool BlockStatic::Empty()
+{
+    return _dequeCommand.empty();
+}

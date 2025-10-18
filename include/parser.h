@@ -8,7 +8,7 @@
 class Parser
 {
 public:
-    Parser(NetworkAdapterPtr networkAdapter, LoggerPtr logger, WriterrPtr writer);
+    Parser(INetworkAdapter* pNetworkAdapter, ILogger* pLogger, IWriter* pWriter);
 public:
     void Run();
     const NetworkAdapterPtr& GetNetworkAdapter() const;

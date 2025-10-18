@@ -32,21 +32,13 @@ std::string Logger::InitPathHomeDir()
 
 void Logger::Log(BlockPtr block)
 {
-    if(block->GetSizeBlock() == 0) return;
+    if(block->Empty()) return;
 
     fs::path dirPath = _nameFolder;
 
     try
     {
-        if (!fs::exists(dirPath))
-        {
-            fs::create_directory(dirPath);
-            std::cout << "Directory created successfully: " << dirPath << std::endl;
-        }
-        else
-        {
-            std::cout << "Directory already exists: " << dirPath << std::endl;
-        }
+        if (!fs::exists(dirPath)) fs::create_directory(dirPath);
     }
     catch (const std::exception& ex)
     {
@@ -56,20 +48,20 @@ void Logger::Log(BlockPtr block)
     const auto& commands = block->GetCommands();
     std::string strName = std::format("{}{}{}",
         Logger::_prefix,
-        (*commands.begin())->GetTime(),
+        (*commands.begin())->GetTick(),
         Logger::_extension);
 
     std::ofstream logFile(strName);
 
     if (logFile.is_open())
     {
+        // TODO :: По-хорошему сделать бы проход по IBlock, но не хочется оборачивать
+        // итератор.
         for (const auto& it : commands)
-        {
-            logFile << std::format("{} | {}", it->GetCommnad(), it->GetTime());
-        }
+            logFile << std::format("{} | {}", it->GetDataTime(), it->GetCommnad());
     }
 
-      logFile.close();
+    logFile.close();
 }
 
 const std::string& Logger::GetExtension()

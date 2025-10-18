@@ -7,14 +7,14 @@
 class NetworkAdapter : public INetworkAdapter
 {
 public:
-    NetworkAdapter(GenerateCommandPtr generateCommand, GenerateBolckPtr generateBolck, ReaderPtr reader, const size_t& countPackageInBolock);
+    NetworkAdapter(IGenerateCommand* pGenerateCommand, IGenerateBolck* pGenerateBolck, IReader* pReader, const size_t& countPackageInBolock);
 public:
     BlockPtr ReadPackage() override;
     const size_t& GetCountPackageInBolock() override;
     const ReaderPtr& GetReader() const override;
 private:
-    ReaderPtr _reader;
     GenerateCommandPtr _generateCommand;
     GenerateBolckPtr _generateBolck;
+    ReaderPtr _reader;
     size_t _countPackageInBolock;
 };
