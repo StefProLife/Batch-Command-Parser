@@ -9,6 +9,6 @@ class DynamicBlock : public Block
     DynamicBlock() = default;
 public:
     bool Push(CommandPtr& command) override;
-private:
-    size_t _numberNested = 0;
+    bool GetIgnore() override;
+    void SetIgnore(bool bIgnore) override;
 };

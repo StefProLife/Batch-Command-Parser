@@ -33,6 +33,7 @@ std::string Logger::InitPathHomeDir()
 void Logger::Log(BlockPtr block)
 {
     if(block->Empty()) return;
+    if (block->GetIgnore()) return;
 
     fs::path dirPath = _nameFolder;
 

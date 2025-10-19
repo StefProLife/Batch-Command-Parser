@@ -16,7 +16,8 @@ BlockPtr NetworkAdapter::ReadPackage()
     if (_countPackageInBolock == 0)
         throw std::invalid_argument("_countPackageInBolock don't be equal 0");
 
-    IBlock* pBlock = makeBlock(BlockType::staticBlock);
+    BlockType type = static_cast<BlockType>(_numberNested);
+    IBlock* pBlock = makeBlock(type);
     if (!pBlock)
         throw std::runtime_error("Undefined error");
 
@@ -25,6 +26,30 @@ BlockPtr NetworkAdapter::ReadPackage()
     do
     {
         std::string strLine = _reader->Read();
+
+        if (strLine == _strEOF)
+        {
+            break;
+        }
+
+        if (strLine == _strEOF && _numberNested != 0)
+        {
+            pBlock->SetIgnore(true);
+            break;
+        }
+        else if (strLine == _beginDynamicBlock)
+        {
+            _numberNested++;
+            if (_numberNested == 1) break; // begin dynamic block
+            continue; // don't add symbol "{" to the block
+        }
+        else if (strLine == _endDynamicBlock)
+        {
+            _numberNested--;
+            if (_numberNested == 0) break; // end dynamic block
+            continue; // don't add symbol "}" to the block
+        }
+
         ICommand* pCommand = _generateCommand->CreateCommnad();
         pCommand->SetCommnad(strLine);
         CommandPtr commandPtr = CommandPtr(pCommand);

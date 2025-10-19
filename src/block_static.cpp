@@ -7,13 +7,19 @@ BlockStatic::BlockStatic(size_t sizeBlock)
 bool BlockStatic::Push(CommandPtr& command)
 {
     _dequeCommand.push_back(std::move(command));
-
-    if (command->GetCommnad() == _strEOF)
-        return false;
-    if (command->GetCommnad() == _beginDynamicBlock)
-        return false;
-    else if(_dequeCommand.size() == _sizeBlock)
+    if(_dequeCommand.size() == _sizeBlock)
         return false;
 
     return true;
+}
+
+bool BlockStatic::GetIgnore()
+{
+    return false;
+}
+
+void BlockStatic::SetIgnore(bool bIgnore)
+{
+    bIgnore = false; // We never ignore a static block.
+    _bIgnore = bIgnore;
 }

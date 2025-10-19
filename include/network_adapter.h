@@ -12,10 +12,10 @@ public:
     const size_t& GetCountPackageInBolock() override;
     const ReaderPtr& GetReader() const override;
 private:
-    enum class BlockType
+    enum class BlockType : uint16_t
     {
-        staticBlock,
-        dynamicBlock
+        staticBlock = 0,
+        dynamicBlock = 1
     };
 private:
     IBlock* makeBlock(BlockType type);
@@ -23,4 +23,9 @@ private:
     GenerateCommandPtr _generateCommand;
     ReaderPtr _reader;
     size_t _countPackageInBolock;
+private:
+    std::string _beginDynamicBlock = "{";
+    std::string _endDynamicBlock = "}";
+    std::string _strEOF = "EOF";
+    size_t _numberNested = 0;
 };

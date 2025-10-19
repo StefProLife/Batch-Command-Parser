@@ -3,6 +3,7 @@
 void StdWriter::Write(BlockPtr block)
 {
     if (block->Empty()) return;
+    if (block->GetIgnore()) return;
 
     // TODO :: По-хорошему сделать бы проход по IBlock, но не хочется оборачивать
     // итератор.
