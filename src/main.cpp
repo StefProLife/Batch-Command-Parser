@@ -3,7 +3,6 @@
 #include <memory>
 #include "network_adapter.h"
 #include "generate_command.h"
-#include "generate_block_static.h"
 #include "std_reader.h"
 #include "std_writer.h"
 #include "file_logger.h"
@@ -30,9 +29,8 @@ int main(int argc, char const* argv[])
     //}
 
     IGenerateCommand* pIGenerateCommand = new GenerateCommand();
-    IGenerateBlock* pIGenerateBolck = new GenerateBlockStatic();
     IReader* pReader = new StdReader();
-    INetworkAdapter* pNetworkAdapter = new NetworkAdapter(pIGenerateCommand, pIGenerateBolck, pReader, countPackageInBolock);
+    INetworkAdapter* pNetworkAdapter = new NetworkAdapter(pIGenerateCommand, pReader, countPackageInBolock);
     
     IWriter* pWriter = new StdWriter();
     ILogger& log = Logger::GetInstance();

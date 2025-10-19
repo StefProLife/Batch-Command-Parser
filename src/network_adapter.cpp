@@ -3,10 +3,10 @@
 #include "network_adapter.h"
 #include "Icommand.h"
 #include "Iblock.h"
+#include "block_static.h"
 
-NetworkAdapter::NetworkAdapter(IGenerateCommand* pGenerateCommand, IGenerateBlock* pGenerateBolck, IReader* pReader, const size_t& countPackageInBolock)
-    : _generateCommand(GenerateCommandPtr(pGenerateCommand)),
-      _generateBolck(GenerateBlockPtr(pGenerateBolck)),
+NetworkAdapter::NetworkAdapter(IGenerateCommand* pGenerateCommand, IReader* pReader, const size_t& countPackageInBolock)
+    : _generateCommand(pGenerateCommand),
       _reader(ReaderPtr(pReader)),
       _countPackageInBolock(countPackageInBolock)
 {}
@@ -16,7 +16,7 @@ BlockPtr NetworkAdapter::ReadPackage()
     if (_countPackageInBolock == 0)
         throw std::invalid_argument("_countPackageInBolock don't be equal 0");
 
-    IBlock* pBlock = _generateBolck->CreateBlock();
+    IBlock* pBlock = makeBlock(BlockType::staticBlock);
     bool next = false;
 
     do
@@ -40,4 +40,23 @@ const size_t& NetworkAdapter::GetCountPackageInBolock()
 const ReaderPtr& NetworkAdapter::GetReader() const
 {
     return _reader;
+}
+
+IBlock* NetworkAdapter::makeBlock(BlockType type)
+{
+    switch (type)
+    {
+        case BlockType::staticBlock:
+        {
+            return new BlockStatic(_countPackageInBolock);
+        }
+        case BlockType::dynamicBlock:
+        {
+            return nullptr;
+        }
+        default:
+        {
+            return nullptr;
+        }
+    }
 }
