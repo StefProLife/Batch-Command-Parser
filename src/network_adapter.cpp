@@ -27,14 +27,14 @@ BlockPtr NetworkAdapter::ReadPackage()
     {
         std::string strLine = _reader->Read();
 
-        if (strLine == _strEOF)
-        {
-            break;
-        }
-
         if (strLine == _strEOF && _numberNested != 0)
         {
             pBlock->SetIgnore(true);
+            _numberNested = 0;
+            break;
+        }
+        else if (strLine == _strEOF)
+        {
             break;
         }
         else if (strLine == _beginDynamicBlock)
