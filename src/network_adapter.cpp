@@ -2,8 +2,8 @@
 
 #include "network_adapter.h"
 #include "Icommand.h"
-#include "Iblock.h"
 #include "block_static.h"
+#include "block_dynamic.h"
 
 NetworkAdapter::NetworkAdapter(IGenerateCommand* pGenerateCommand, IReader* pReader, const size_t& countPackageInBolock)
     : _generateCommand(pGenerateCommand),
@@ -17,6 +17,9 @@ BlockPtr NetworkAdapter::ReadPackage()
         throw std::invalid_argument("_countPackageInBolock don't be equal 0");
 
     IBlock* pBlock = makeBlock(BlockType::staticBlock);
+    if (!pBlock)
+        throw std::runtime_error("Undefined error");
+
     bool next = false;
 
     do
@@ -52,7 +55,7 @@ IBlock* NetworkAdapter::makeBlock(BlockType type)
         }
         case BlockType::dynamicBlock:
         {
-            return nullptr;
+            return new DynamicBlock();
         }
         default:
         {

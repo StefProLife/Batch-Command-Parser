@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Iblock.h"
+#include <string>
 
 class Block : public IBlock
 {
@@ -14,4 +15,7 @@ public:
     bool Empty() override;
 protected:
     std::deque<CommandPtr> _dequeCommand;
+    std::string _beginDynamicBlock = "{";
+    std::string _endDynamicBlock = "}";
+    std::string _strEOF = "EOF";
 };
