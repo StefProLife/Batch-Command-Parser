@@ -13,23 +13,3 @@ bool BlockStatic::Push(CommandPtr& command)
 
     return true;
 }
-
-size_t BlockStatic::GetSizeBlock()
-{
-    return _dequeCommand.size();
-}
-
-const std::deque<CommandPtr>& BlockStatic::GetCommands()
-{
-    return _dequeCommand;
-}
-
-void BlockStatic::Clear()
-{
-    _dequeCommand.clear();
-}
-
-bool BlockStatic::Empty()
-{
-    return _dequeCommand.empty();
-}

@@ -1,8 +1,8 @@
 #pragma once
 
 #include <memory>
-#include "Icommand.h"
 #include <deque>
+#include "Icommand.h"
 
 class IBlock
 {
