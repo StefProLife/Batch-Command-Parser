@@ -10,32 +10,34 @@
 
 int main(int argc, char const* argv[])
 {
-    //if (argc < 1) return 0;
+    if (argc < 2) return 0;
 
-    //std::string strArg = argv[1];
+    std::string strArg = argv[1];
     size_t countPackageInBolock = 3;
 
-    //try
-    //{
-    //    countPackageInBolock = std::stoul(strArg);
-    //}
-    //catch (const std::invalid_argument& e)
-    //{
-    //    std::cerr << "Invalid argument: " << e.what() << std::endl;
-    //}
-    //catch (const std::out_of_range& e)
-    //{
-    //    std::cerr << "Out of range: " << e.what() << std::endl;
-    //}
+    try
+    {
+        countPackageInBolock = std::stoul(strArg);
+    }
+    catch (const std::invalid_argument& e)
+    {
+        std::cout << "Invalid argument: " << e.what() << std::endl;
+        return 1;
+    }
+    catch (const std::out_of_range& e)
+    {
+        std::cout << "Out of range: " << e.what() << std::endl;
+        return 1;
+    }
 
     IGenerateCommand* pIGenerateCommand = new GenerateCommand();
     IReader* pReader = new StdReader();
     INetworkAdapter* pNetworkAdapter = new NetworkAdapter(pIGenerateCommand, pReader, countPackageInBolock);
-    
+
     IWriter* pWriter = new StdWriter();
     ILogger& log = Logger::GetInstance();
-    Parser* parser = new Parser(pNetworkAdapter, &(log), pWriter);
-    parser->Run();
+    Parser parser = Parser(pNetworkAdapter, &(log), pWriter);
+    parser.Run();
 
     return 0;
 }
