@@ -11,6 +11,9 @@ std::string Logger::_prefix = "bulk";
 std::string Logger::_homeDir = InitPathHomeDir();
 std::string Logger::_nameFolder = "Parser";
 
+// Ћоги в данный момент сохран€ютс€ в р€дом с приложением.
+// ѕо большому счету все сделано, дл€ того чтобы сохран€ть в папке пользовател€.
+// Ќет возможности спокойно отладитьс€ на 2-х системах.
 std::string Logger::InitPathHomeDir()
 {
     fs::path homeDir;
@@ -59,7 +62,7 @@ void Logger::Log(BlockPtr block)
         // TODO :: ѕо-хорошему сделать бы проход по IBlock, но не хочетс€ оборачивать
         // итератор.
         for (const auto& it : commands)
-            logFile << std::format("{} | {}", it->GetDataTime(), it->GetCommnad());
+            logFile << std::format("{} | {}", it->GetDataTime(), it->GetCommnad()) << std::endl;
     }
 
     logFile.close();
